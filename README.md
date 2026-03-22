@@ -71,22 +71,29 @@ CREATE TABLE appliances_reviews (
 - pgAdmin 4
 - Python 3 with Pandas (for data preprocessing)
 
+## Data Preprocessing
+The following preprocessing steps were applied to the raw data using 
+Python (Pandas) before loading into PostgreSQL:
+- Extracted subcategory from nested categories field
+- Converted reviewTime to datetime format
+- Selected relevant columns for each table
+
 ### Steps
 
-1. Download the Appliances reviews and metadata files from the dataset link above
-2. Run the preprocessing notebook to clean and prepare the CSV files
-3. Create the database tables using `queries/create_tables.sql`
-4. Load the CSV files into PostgreSQL:
-```sql
-COPY appliances_metadata (asin, price, imurl, description, categories, title, brand, subcategory)
-FROM '/path/to/appliances_metadata.csv'
-WITH (FORMAT CSV, HEADER);
 
-COPY appliances_reviews (reviewerID, asin, reviewerName, reviewText, overall, summary, reviewTime)
-FROM '/path/to/appliances_reviews.csv'
-WITH (FORMAT CSV, HEADER);
-```
+### Steps
+1. Download the Appliances reviews and metadata files from the dataset 
+   link above
+2. Parse and preprocess the raw JSON files into CSV format using Python 
+   (Pandas) — key steps include extracting subcategory from the nested 
+   categories field, converting reviewTime to datetime, and selecting 
+   relevant columns
+3. Create the database tables using `queries/create_tables.sql`
+4. Load the CSV files into PostgreSQL using the COPY commands in 
+   `queries/create_tables.sql` — update file paths to match your 
+   local directory
 5. Run the analysis queries in `queries/analysis_queries.sql`
+
 
 ## Tools
 - PostgreSQL
