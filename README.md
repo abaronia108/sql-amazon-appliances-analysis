@@ -1,6 +1,6 @@
 # SQL Analysis: Amazon Appliances Review Dataset
 
-Exploratory SQL analysis of Amazon Appliances reviews and product metadata using PostgreSQL, covering 600,000+ reviews across 93 product subcategories.
+This is a SQL analysis of Amazon Appliances reviews and product metadata datasets using PostgreSQL as part of my Database Systems coursework.
 
 ## Data Source
 
@@ -11,9 +11,7 @@ Category used: Appliances (602,777 reviews)
 
 ## Overview
 
-This project loads Amazon Appliances review and product metadata into a PostgreSQL relational database and runs 13 analytical SQL queries to explore reviewer behavior, product ratings, subcategory trends, and temporal patterns in review activity.
-
-Data was preprocessed in Python (Pandas) before loading into PostgreSQL via pgAdmin 4.
+This project loads Amazon Appliances review and product metadata into PostgreSQL and runs 13 analytical SQL queries to explore reviewer behavior, product ratings, subcategory trends, and temporal patterns in review activity. The data for this project was preprocessed in Python (Pandas) before loading into PostgreSQL via pgAdmin 4.
 
 ## Key Findings
 
@@ -72,7 +70,7 @@ CREATE TABLE appliances_reviews (
 - Python 3 with Pandas (for data preprocessing)
 
 ## Data Preprocessing
-The following preprocessing steps were applied to the raw data using 
+The following preprocessing steps were applied to the dataset using 
 Python (Pandas) before loading into PostgreSQL:
 - Extracted subcategory from nested categories field
 - Converted reviewTime to datetime format
@@ -82,10 +80,9 @@ Python (Pandas) before loading into PostgreSQL:
 ### Steps
 1. Download the Appliances reviews and metadata files from the dataset 
    link above
-2. Parse and preprocess the raw JSON files into CSV format using Python 
-   (Pandas) — key steps include extracting subcategory from the nested 
-   categories field, converting reviewTime to datetime, and selecting 
-   relevant columns
+2.  Preprocess the data using Python (Pandas) — extract subcategory 
+   from the nested categories field, convert reviewTime to datetime, 
+   and select relevant columns from datasets before loading them into PostgreSQL
 3. Create the database tables using `queries/create_tables.sql`
 4. Load the CSV files into PostgreSQL using the COPY commands in 
    `queries/create_tables.sql` — update file paths to match your 
