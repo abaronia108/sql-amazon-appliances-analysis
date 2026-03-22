@@ -78,8 +78,6 @@ Python (Pandas) before loading into PostgreSQL:
 - Converted reviewTime to datetime format
 - Selected relevant columns for each table
 
-### Steps
-
 
 ### Steps
 1. Download the Appliances reviews and metadata files from the dataset 
