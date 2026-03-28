@@ -50,14 +50,16 @@ join appliances_reviews on appliances_metadata.asin = appliances_reviews.asin
 group by subcategory
 having avg(overall) > 3;
 --query 13
-with ranked_reviews as 
-	(select title, subcategory, count(reviewText) as review_count, row_number() over (partition by subcategory order by
-	count(reviewText) desc) as rank
-	from appliances_metadata
-	join appliances_reviews on appliances_metadata.asin = appliances_reviews.asin
-	group by title, subcategory
-)
 select subcategory, title, review_count
-from ranked_reviews
+from (
+    select 
+        title, subcategory, count(reviewText) as review_count, row_number() over (
+            partition by subcategory 
+            order by count(reviewText) desc
+        ) as rank
+    from appliances_metadata
+    join appliances_reviews on appliances_metadata.asin = appliances_reviews.asin
+    group by title, subcategory
+) as ranked_reviews
 where rank <= 3
-order by subcategory, review_count 
+order by subcategory, review_count;
